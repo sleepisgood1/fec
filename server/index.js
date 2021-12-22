@@ -4,8 +4,11 @@ var express = require('express');
 
 //might want to think about using the cors middleware if we run into cors errors
 
-var router = require('./routes.js');
-var qnaRoutes = require('./qnaRoutes.js');
+var productDetailRouter = require('./productDetailRoutes.js');
+var qnaRoutes = require('./qNARoutes.js');
+var ratingsNReviewsRoutes = require('./ratingsNReviewsRoutes.js');
+var relatedItemsRoutes = require('./relatedItemsRoutes.js');
+
 var app = express();
 //
 const port = 3000;
@@ -15,8 +18,11 @@ app.listen(port, ()=>{
 });
 app.use(express.json());
 
-app.use('/', router)
+
+app.use('/productDetail', productDetailRouter)
 app.use('/qna', qnaRoutes)
+app.use('/ratingsnreviews', ratingsNReviewsRoutes)
+app.use('/relateditems', relatedItemsRoutes)
 //could change this route to be more specific
 
 app.use(express.static(__dirname + '/../client'));
