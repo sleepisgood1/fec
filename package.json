@@ -1,0 +1,23 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "npm run test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/motivated-maple/fec.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/motivated-maple/fec/issues"
+  },
+  "homepage": "https://github.com/motivated-maple/fec#readme",
+  "devDependencies": {
+    "jest": "^27.4.5"
+  }
+}
