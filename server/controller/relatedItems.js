@@ -12,19 +12,19 @@ module.exports = {
       })
   },
   getProductInfo: function(req, res) {
-    models.relatedItems.getProductInfoFromApi(req.body.product_id)
+    models.relatedItems.getProductInfoFromApi(req.query.product_id)
       .then((results)=>{
         res.json(results.data)
       })
   },
   getAllStylesOfProduct: function(req, res) {
-    models.relatedItems.getAllStylesOfProductFromApi(req.body.product_id)
+    models.relatedItems.getAllStylesOfProductFromApi(req.query.product_id)
       .then((results)=>{
         res.json(results.data)
       })
   },
   getAllRelatedProducts: function(req, res) {
-    models.relatedItems.getAllRelatedProductsFromApi(req.body.product_id)
+    models.relatedItems.getAllRelatedProductsFromApi(req.query.product_id)
       .then((results)=>{
         res.json(results.data)
       })

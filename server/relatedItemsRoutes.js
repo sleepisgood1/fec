@@ -6,11 +6,14 @@ router.use((req, res, next)=>{
   next();
 })
 // console.log(controller.relatedItems.getAllProducts)
-router.get('/', controller.relatedItems.getAllProducts)
-
+router.get('/all', controller.relatedItems.getAllProducts)
+router.get('/info', controller.relatedItems.getProductInfo)
+router.get('/styles', controller.relatedItems.getAllStylesOfProduct)
+router.get('/related', controller.relatedItems.getAllRelatedProducts
+)
 // router.get('/relateditems', )
 //fill in with correct url, function
-router.post('', )
+// router.post('/info', )
 //fill in with correct url, function
 //use parameters to figure out which function to use each time!
 module.exports = router
