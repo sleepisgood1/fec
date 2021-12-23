@@ -2,7 +2,7 @@ var models = require('../model');
 
 module.exports = {
   getAllProducts: function(req, res) {
-    console.log('this is getting invoked')
+    // console.log('this is getting invoked')
     // console.log('req', req)
     // console.log(models.relatedItems.getAllProductsFromApi)
     models.relatedItems.getAllProductsFromApi()
