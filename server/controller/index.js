@@ -3,7 +3,7 @@
 // - if we are -> need to import models
 
 
-exports.relatedItems = require('./relatedItems.js')
-// module.exports = {
-//   relatedItems: require('./relatedItems.js')
-// }
+// exports.relatedItems = require('./relatedItems.js')
+module.exports = {
+  relatedItems: require('./relatedItems.js')
+}
