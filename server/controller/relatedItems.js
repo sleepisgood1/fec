@@ -29,5 +29,27 @@ module.exports = {
         res.json(results.data)
       })
   },
+  getAllReviews: function(req, res) {
+    models.productDetails.getAllReviewsFromApi(req.query.product_id, req.query.sort, req.query.count)
+      .then((results)=>{
+        res.json(results.data)
+      })
+  },
+  getReviewMetadata: function(req, res) {
+    models.relatedItems.getReviewMetadataFromApi(req.query.product_id)
+      .then((results)=>{
+        res.json(results.data)
+      })
+  },
+  addReview: function(req, res) {
+    console.log('req.body', req.body)
+    models.relatedItems.addReviewToApi(req.body)
+      .then((results)=>{
+        res.json(results.data)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+  },
 }
 // module.exports.getAllProducts()

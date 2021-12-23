@@ -19,7 +19,7 @@ app.listen(port, ()=>{
 app.use(express.json());
 
 
-app.use('/productDetail', productDetailRouter)
+app.use('/productdetail', productDetailRouter)
 app.use('/qna', qnaRoutes)
 app.use('/ratingsnreviews', ratingsNReviewsRoutes)
 app.use('/relateditems', relatedItemsRoutes)

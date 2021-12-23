@@ -5,5 +5,6 @@
 
 // exports.relatedItems = require('./relatedItems.js')
 module.exports = {
-  relatedItems: require('./relatedItems.js')
+  relatedItems: require('./relatedItems.js'),
+  productDetails: require('./productDetails.js')
 }
