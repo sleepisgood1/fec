@@ -1,4 +1,4 @@
-var API_KEY = 'INPUT KEY HERE';
+var API_KEY = 'KEYHERE';
 
 module.exports ={API_KEY};
 
