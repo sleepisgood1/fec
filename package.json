@@ -21,9 +21,17 @@
   },
   "homepage": "https://github.com/motivated-maple/fec#readme",
   "devDependencies": {
-    "jest": "^27.4.5"
+    "@testing-library/react": "^12.1.0",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "babel-jest": "^26.6.3",
+    "enzyme": "^3.11.0",
+    "jest": "^27.4.5",
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "enzyme-adapter-react-16": "^1.15.6",
     "express": "^4.17.2",
     "@babel/core": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
