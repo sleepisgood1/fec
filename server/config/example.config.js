@@ -1,4 +1,5 @@
-var API_KEY = 'put key here';
-//change filename to config.js
+var API_KEY = 'IMPUT KEY HERE';
 
-export { API_KEY};
+module.exports ={API_KEY};
+
+//change file name to config.js instead of example.config.js
