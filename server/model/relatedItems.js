@@ -61,6 +61,7 @@ module.exports = {
     })
   },
   addReviewToApi: function(bodyParams) {
+    //https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews
     return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews`, bodyParams, {
       headers: {
         'Authorization': config.API_KEY
