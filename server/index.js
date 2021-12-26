@@ -26,5 +26,5 @@ app.use('/relateditems', relatedItemsRoutes)
 //use parameters to then route each to the appropriate functions
 //could change this route to be more specific
 
-app.use(express.static(__dirname + '/../client'));
+app.use(express.static('client/dist'));
 //might need to change directory
