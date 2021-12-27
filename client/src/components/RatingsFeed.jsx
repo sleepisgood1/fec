@@ -1,5 +1,6 @@
 import React from 'react';
 import RatingsFeedCard from './RatingsFeedCard.jsx'
+import ReviewAdder from './ReviewAdder.jsx'
 
 class RatingsFeed extends React.Component {
   constructor(props) {
@@ -8,7 +9,18 @@ class RatingsFeed extends React.Component {
       sampleReview: this.props.sampleReview
 
     }
+    this.addReview = this.addReview.bind(this);
+    this.moreReviews = this.moreReviews.bind(this);
   }
+
+  moreReviews() {
+    console.log('More reviews to be generated')
+    }
+
+  addReview() {
+    console.log('ReviewAdder shown!')
+    }
+
 
   render() {
     return (
@@ -18,8 +30,9 @@ class RatingsFeed extends React.Component {
         <div> <RatingsFeedCard review={this.state.sampleReview.results[0]} /> </div>
         <div> <RatingsFeedCard review={this.state.sampleReview.results[1]} /> </div>
 
-        <button> MORE REVIEWS </button>
-        <button> ADD A REVIEW </button>
+        <button onClick={this.moreReviews}> MORE REVIEWS </button>
+        <button onClick={this.addReview}> ADD A REVIEW </button>
+        <ReviewAdder />
       </div>
 
     )
