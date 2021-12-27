@@ -9,6 +9,7 @@ render() {
   return (
     <div>
     Stats and stars oh my
+    <div> {JSON.stringify(this.props.samp)} </div>
     </div>
   )
 }
