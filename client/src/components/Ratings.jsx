@@ -26,9 +26,8 @@ console.log('Ratings mounted')
 render() {
   return (
     <div>
-
-    <RatingsFeed />
     <RatingsStats samp={this.state.sampleData}/>
+    <RatingsFeed />
     </div>
   )
 }
