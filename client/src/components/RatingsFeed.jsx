@@ -6,7 +6,8 @@ class RatingsFeed extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      sampleReview: this.props.sampleReview
+      sampleReview: this.props.sampleReview,
+      showAdder: false
 
     }
     this.addReview = this.addReview.bind(this);
@@ -19,6 +20,8 @@ class RatingsFeed extends React.Component {
 
   addReview() {
     console.log('ReviewAdder shown!')
+    let opposite = !this.state.showAdder;
+    this.setState({showAdder : opposite});
     }
 
 
@@ -32,7 +35,7 @@ class RatingsFeed extends React.Component {
 
         <button onClick={this.moreReviews}> MORE REVIEWS </button>
         <button onClick={this.addReview}> ADD A REVIEW </button>
-        <ReviewAdder />
+        {this.state.showAdder ? <ReviewAdder /> : '' }
       </div>
 
     )
