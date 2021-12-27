@@ -2,7 +2,7 @@ import React from 'react';
 import RatingsFeed from './RatingsFeed.jsx'
 import RatingsStats from './RatingsStats.jsx'
 import axios from 'axios'
-import sampleData from '../sampleData.js'
+import {sampleData, sampleReview} from '../sampleData.js'
 
 
 class Ratings extends React.Component {
@@ -11,8 +11,8 @@ class Ratings extends React.Component {
 
    this.state = {
     reviews: [],
-    sampleData: sampleData
-
+    sampleData: sampleData,
+    sampleReview: sampleReview
    }
 
  }
@@ -27,11 +27,10 @@ render() {
   return (
     <div>
     <RatingsStats samp={this.state.sampleData}/>
-    <RatingsFeed />
+    <RatingsFeed sampleReview={this.state.sampleReview}/>
     </div>
-  )
-}
-}
+
+  )}}
 
 
 export default Ratings;

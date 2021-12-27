@@ -27,9 +27,6 @@ var recommended = Math.round(rec_percent * 100);
     <div> Quality {this.props.samp.characteristics.Quality.value} </div>
     </div>
 
-  )
-}
-}
-
+  )}}
 
 export default RatingsStats;
