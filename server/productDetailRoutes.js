@@ -2,7 +2,7 @@
 var controller = require('./controller')
 var router = require('express').Router();
 router.use((req, res, next)=>{
-  console.log('productdetails router is working');
+  console.log('product details router is working');
   next();
 })
 router.get('/all', controller.productDetails.getAllProducts)

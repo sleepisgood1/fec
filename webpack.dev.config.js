@@ -9,7 +9,7 @@ module.exports = {
   watch: true,
   output: {
     path: DIST_DIR,
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
