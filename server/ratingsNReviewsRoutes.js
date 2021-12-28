@@ -11,7 +11,7 @@ router.get('/all', controller.relatedItems.getAllReviews)
 
 router.get('/', )
 //fill in with correct url, function
-router.post('/addReview', controller.relatedItems.addReview)
+router.post('/addReview', controller.addReview)
 //fill in with correct url, function
 
 module.exports = router

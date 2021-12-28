@@ -5,10 +5,10 @@ router.use((req, res, next)=>{
   console.log('relatedItems router is working');
   next();
 })
-router.get('/all', controller.relatedItems.getAllProducts)
-router.get('/info', controller.relatedItems.getProductInfo)
-router.get('/styles', controller.relatedItems.getAllStylesOfProduct)
-router.get('/related', controller.relatedItems.getAllRelatedProducts
+router.get('/all', controller.getAllProducts)
+router.get('/info', controller.getProductInfo)
+router.get('/styles', controller.getAllStylesOfProduct)
+router.get('/related', controller.getAllRelatedProducts
 )
 
 module.exports = router
