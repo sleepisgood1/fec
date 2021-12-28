@@ -4,6 +4,8 @@ import ProductDetail from './ProductDetail/ProductDetail.jsx'
 import { useParams } from "react-router-dom";
 const axios = require('axios');
 const config = require('../../../server/config/config.js');
+import styled from "styled-components"
+import "../../dist/style.css"
 
 export default function App() {
   const { id } = useParams();
