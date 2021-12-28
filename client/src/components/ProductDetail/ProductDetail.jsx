@@ -7,7 +7,7 @@ class ProductDetail extends React.Component {
 
 render() {
   return (
-    <div></div>
+    <div>{this.props.productId}</div>
   )
 }
 }

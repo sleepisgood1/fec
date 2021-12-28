@@ -15,7 +15,13 @@ import Initial from './Initial.jsx';
 
 export default function App() {
   const { id } = useParams();
+  const [productId, setProductId] = useState(id);
   return (
-   <div>{id}</div>
+   <div>
+     <ProductDetail
+       productId = {productId}
+       changeProduct = {setProductId}
+     />
+   </div>
   );
 }
