@@ -37,7 +37,7 @@ class ReviewAdder extends React.Component {
             Rating:
             <input type="number" max="5" min="1" />
           </label>
-        <div> <label>
+          <div> <label>
             Summary:
             <input type="text" />
           </label>
@@ -48,7 +48,7 @@ class ReviewAdder extends React.Component {
           </label>
           </div>
 
-        <div> <label>
+          <div> <label>
             Recommend:
             <input type="text" />
           </label>
@@ -77,7 +77,7 @@ class ReviewAdder extends React.Component {
           </label>
           </div>
           <button type="submit">Submit Review</button>
-          </form>
+        </form>
 
       </div>
     )
