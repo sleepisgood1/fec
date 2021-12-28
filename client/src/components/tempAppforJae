@@ -1,0 +1,127 @@
+// import React, {useState, useEffect} from 'react';
+import RelatedItems from './RelatedItems.jsx'
+// import axios from 'axios'
+
+import * as React from "react";
+import { useState, useEffect } from "react";
+// import ProductDetail from './ProductDetail/ProductDetail.jsx'
+import { useParams } from "react-router-dom";
+const axios = require('axios');
+const config = require('../../../server/config/config.js');
+
+export default function App() {
+  const { id } = useParams();
+  const [productId, setProductId] = useState(id);
+  const [loading, setLoading] = useState(true);
+  const [product, setProduct] = useState({})
+  const [relatedProductList, setRelatedProductList] = useState([])
+  useEffect(() => {
+    const fetchData = async () =>{
+      setLoading(true);
+      try {
+        console.log(id)
+        const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
+          headers: {
+            'Authorization': config.API_KEY
+          }
+        });
+        setProduct(response.data);
+        //console.log(product);
+        //once product has been set then we need to get all the related items ... not sure if I need to do .then or do await set product or...? and
+        axios.get('localhost:3000/relateditems/related', {
+          params: {
+            product_id: productId
+          }
+        })
+          .then((response)=>{
+            changeRelatedProductList(response.data)
+          })
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
+  ////////////
+// function App(props) {
+//   const [fullProductList, setFullProductList] = useState([])
+
+//     useEffect(()=>{
+//       function handleCurrentListChange(response) {
+//         setFullProductList(response)
+//       }
+
+//       axios.get('localhost:3000/productDetail/all', {
+//         params: {
+//           page: 1,
+//           count: 5
+//         }
+//       }
+//       )
+//         .then((response)=>{handleCurrentListChange(response.data)})
+//     //page and count query params were hard coded in for now but can be changed if need arises
+//     })
+//   const [currentItem, setCurrentItem] = useState(null)
+//   const [relatedProductList, setRelatedProductList] = useState([])
+//     useEffect(async()=>{
+//       handleItemChange async(item) => {
+//         await setCurrentItem(item)
+//       }
+//       await handleItemChange(fullProductList[0])
+//       changeRelatedProductList async(list)=> {
+//         await setRelatedProductList(list)
+//       }
+//       //err here?  - relatedProduct list has already been declared -> maybe its due to useEffect needing to be directly related to useState
+//       axios.get('localhost:3000/relateditems/related', {
+//         params: {
+//           product_id: currentItem.product_id
+//         }
+//       })
+//         .then((response)=>{
+//           changeRelatedProductList(response.data)
+//         })
+//     }, [fullProductList])
+  // wasnt sure how we wanted to choose which product we were showing so hard coded this into the 0th index of the product list
+  // const [relatedProductList, setRelatedProductList] = useState([])
+  // useEffect(()=>{
+  //   function changeRelatedProductList(list) {
+  //     setRelatedProductList(list)
+  //   }
+  //   axios.get('localhost:3000/relateditems/related', {
+  //     params: {
+  //       product_id: currentItem.product_id
+  //     }
+  //   })
+  //     .then((response)=>{
+  //       changeRelatedProductList(response.data)
+  //     })
+  //   //stopped here
+  // })
+  return (
+    <div>
+      <div>Hello World</div>
+      <RelatedItems relatedItems={relatedProductList}/>
+    </div>
+  )
+}
+
+
+// class App extends React.Component {
+//  constructor(props) {
+//    super(props)
+//  }
+
+//   render() {
+//     return (
+//       <div>
+//         <div>Hello World</div>
+//         <RelatedItems/>
+//       </div>
+//     )
+//   }
+// }
+
+
+// export default App;
+>>>>>>> ddd9324 (Two tests written for RelatedItems, Some work done for App.jsx and created RElatedItem.jsx and RelatedItems.jsx)
