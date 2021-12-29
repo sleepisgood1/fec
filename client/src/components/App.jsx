@@ -41,7 +41,7 @@ export default function App() {
         productId={productId}
         changeProductId={setProductId}
         product={product}
-        changeProductId={setProduct}
+        changeProduct={setProduct}
       />
     <div>
     <Ratings
