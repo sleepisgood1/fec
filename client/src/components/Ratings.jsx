@@ -14,18 +14,12 @@ class Ratings extends React.Component {
       sampleData: sampleData,
       sampleReview: sampleReview
     }
-
   }
-
-  componentDidMount() {
-    console.log('Ratings mounted')
-
-  }
-
 
   render() {
     return (
       <div>
+        <div> this: {this.props.product.id}</div>
         <RatingsStats samp={this.state.sampleData} />
         <RatingsFeed sampleReview={this.state.sampleReview} />
       </div>
