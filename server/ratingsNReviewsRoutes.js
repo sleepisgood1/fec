@@ -1,12 +1,14 @@
 //could either separate out controller (if we do then need to "require" the controller to get its functions)
 var controller = require('./controller')
 var router = require('express').Router();
-
-
-router.get('', (req, res) => {
-  res.status(200).send('hello you got gotted');
+router.use((req, res, next)=>{
+  console.log('ratingsnReviews router is working');
+  next();
 })
+
+router.get('/meta', controller.relatedItems.getReviewMetadata)
 router.get('/all', controller.relatedItems.getAllReviews)
+
 router.get('/', )
 //fill in with correct url, function
 router.post('/addReview', controller.relatedItems.addReview)

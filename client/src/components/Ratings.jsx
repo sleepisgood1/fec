@@ -19,7 +19,7 @@ class Ratings extends React.Component {
   render() {
     return (
       <div>
-        <div> this: {this.props.product.id}</div>
+        <div> </div>
         <RatingsStats samp={this.state.sampleData} />
         <RatingsFeed sampleReview={this.state.sampleReview} />
       </div>

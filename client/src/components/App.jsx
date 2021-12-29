@@ -12,7 +12,8 @@ export default function App() {
   const { id } = useParams();
   const [productId, setProductId] = useState(id);
   const [loading, setLoading] = useState(true);
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({})
+
 
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
@@ -26,8 +27,6 @@ export default function App() {
       })
       .then((results) => {
         //then block for Jae's axios call
-        console.log(results);
-        console.log('axios');
 
       })
       .catch((err) => {
@@ -41,7 +40,7 @@ export default function App() {
         productId={productId}
         changeProductId={setProductId}
         product={product}
-        changeProduct={setProduct}
+        changeProductId={setProduct}
       />
     <div>
     <Ratings
