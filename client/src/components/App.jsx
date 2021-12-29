@@ -13,7 +13,6 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState({})
 
-
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
       headers: {
