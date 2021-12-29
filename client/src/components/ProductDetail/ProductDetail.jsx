@@ -10,9 +10,13 @@ class ProductDetail extends React.Component {
 
 
 render() {
-  console.log(this.props.product)
+
   return (
-    <div>{this.props.productId}</div>
+    <div>
+    <div>{this.props.product.category}</div>
+    <div className='product_name'>{this.props.product.name}</div>
+    <div>{this.props.product.default_price}</div>
+    </div>
   )
 }
 }
