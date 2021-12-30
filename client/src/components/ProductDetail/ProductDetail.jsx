@@ -110,14 +110,12 @@ const Slogan = styled.div`
   text-align: left;
 `;
 
-
 const Image = styled.img`
   height: 100%;
   width: auto;
   max-width: 600px;
   max-height: 500px;
 `;
-
 
 const StyleCircles = styled.img`
 

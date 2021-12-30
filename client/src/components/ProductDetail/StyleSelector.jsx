@@ -3,8 +3,6 @@ const axios = require('axios');
 const config = require('../../../../server/config/config.js');
 import styled, { css } from "styled-components";
 
-
-
 const StyleCircles = styled.img`
   height: 50px;
   width: 50px;
@@ -12,7 +10,6 @@ const StyleCircles = styled.img`
   border-radius: 50%;
   margin: 0.25rem
 `;
-
 
 class StyleSelector extends React.Component {
   constructor(props) {
