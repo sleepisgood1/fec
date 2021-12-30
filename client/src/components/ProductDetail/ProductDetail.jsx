@@ -167,7 +167,7 @@ class ProductDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      styles: {},
+      styles: [],
       currStyleIdx: 0
     }
   }
