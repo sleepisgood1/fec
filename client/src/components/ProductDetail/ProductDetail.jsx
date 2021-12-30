@@ -157,7 +157,7 @@ const StylesHeader = styled.div`
   padding: 3rem 0.25rem 1rem 0.25rem;
   font-weight: regular;
   font-size: 0.9rem;
-  color: #A9A9A9;
+  color: black;
   text-align: left;
 `;
 
@@ -168,8 +168,11 @@ class ProductDetail extends React.Component {
     super(props)
     this.state = {
       styles: [],
-      currStyleIdx: 0
+      currStyleId: undefined,
+      currStyle: {}
     }
+
+    this.pickStyle = this.pickStyle.bind(this);
   }
 
   componentDidMount() {
@@ -189,6 +192,12 @@ class ProductDetail extends React.Component {
       })
   }
 
+  pickStyle(style_id) {
+    this.setState({
+      currStyleId: style_id
+    })
+  }
+
   render() {
     if (Object.keys(this.state.styles).length === 0) {
       return null;
@@ -200,19 +209,43 @@ class ProductDetail extends React.Component {
       stylesArr.push(
         <StyleSelector
           style={style}
+          handleStyle = {this.pickStyle}
           key={style.style_id}/>
       );
     })
+    //console.log(this.state.currStyleId);
+    let idx = this.state.styles.findIndex(x => x.style_id ===Number(this.state.currStyleId))
+    //console.log(idx);
+    let mainSrc;
+    let mainPrice;
+    let mainStyle;
+    if (idx !== -1) {
+      mainSrc = this.state.styles[idx].photos[0].url
+      mainStyle = this.state.styles[idx].name
+      if (this.state.styles[idx].sale_price) {
+        mainPrice = this.state.styles[idx].sale_price + " (On Sale! Regular Price: $" + this.state.styles[idx].original_price + ")";
+      } else {
+        mainPrice = this.state.styles[idx].original_price
+      }
+    } else {
+      mainSrc = this.state.styles[0].photos[0].url
+      mainStyle = this.state.styles[0].name
+      if (this.state.styles[0].sale_price) {
+        mainPrice = this.state.styles[0].sale_price + " (On Sale! Regular Price: $" + this.state.styles[0].original_price +")";
+      } else {
+        mainPrice = this.state.styles[0].original_price
+      }
+    }
 
     return (
       <Container>
         <NavBar></NavBar>
-        <Main><Image src={this.state.styles[0].photos[0].url} /></Main>
+        <Main><Image src= {mainSrc} /></Main>
         <Select>
          <Category>{this.props.product.category}</Category>
          <Name>{this.props.product.name}</Name>
-         <Price>${this.props.product.default_price}</Price>
-         <StylesHeader>STYLE > SELECTED STYLE</StylesHeader>
+         <Price>${mainPrice}</Price>
+         <StylesHeader><b>STYLE > </b>{mainStyle}</StylesHeader>
           <div>{stylesArr}</div>
           <div><Cart /></div>
         </Select>

@@ -14,11 +14,17 @@ const StyleCircles = styled.img`
 class StyleSelector extends React.Component {
   constructor(props) {
     super(props)
+    this.selectStyle = this.selectStyle.bind(this);
+  }
+
+  selectStyle(event) {
+    //console.log(event.target.id);
+    this.props.handleStyle(event.target.id);
   }
 
   render() {
     return(
-      <StyleCircles src={this.props.style.photos[0].thumbnail_url}></StyleCircles>
+      <StyleCircles id={this.props.style.style_id} src={this.props.style.photos[0].thumbnail_url} onClick={this.selectStyle} ></StyleCircles>
     )
   }
 }
