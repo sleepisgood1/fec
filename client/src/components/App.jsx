@@ -12,7 +12,9 @@ export default function App() {
   const { id } = useParams();
   const [productId, setProductId] = useState(id);
   const [loading, setLoading] = useState(true);
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({});
+  const [meta, setMeta] = useState({});
+  const [reviews, setReviews] = useState({});
 
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
@@ -24,14 +26,28 @@ export default function App() {
         setProduct(response.data);
         return response.data
       })
-      .then((results) => {
-        //then block for Jae's axios call
-
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, []);
+      .then(() => {
+        return axios.get(`http://localhost:3000/ratingsnreviews/meta?product_id=${id}`, {
+          headers: {
+            'Authorization': config.API_KEY
+          }
+        }) })
+          .then((response) => {
+            setMeta(response.data);
+          })
+          .then(() => {
+        return axios.get(`http://localhost:3000/ratingsnreviews/all?product_id=${id}`, {
+          headers: {
+            'Authorization': config.API_KEY
+          }
+        }) })
+          .then((response) => {
+            setReviews(response.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      }, []);
 
   return (
     <div>
@@ -43,7 +59,8 @@ export default function App() {
       />
     <div>
     <Ratings
-    product={product}
+    meta={meta}
+    reviews={reviews}
     />
     </div>
     </div>

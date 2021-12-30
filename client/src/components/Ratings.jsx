@@ -17,6 +17,9 @@ class Ratings extends React.Component {
   }
 
   render() {
+    console.log('reviews here: ', this.props.reviews)
+    console.log('meta here: ', this.props.meta)
+
     return (
       <div>
         <div> </div>
