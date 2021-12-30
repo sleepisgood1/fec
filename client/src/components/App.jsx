@@ -6,12 +6,15 @@ const axios = require('axios');
 const config = require('../../../server/config/config.js');
 import styled from "styled-components"
 import "../../dist/style.css"
+import Ratings from './Ratings.jsx'
 
 export default function App() {
   const { id } = useParams();
   const [productId, setProductId] = useState(id);
   const [loading, setLoading] = useState(true);
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({});
+  const [meta, setMeta] = useState({});
+  const [reviews, setReviews] = useState({});
 
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
@@ -19,19 +22,32 @@ export default function App() {
         'Authorization': config.API_KEY
       }
     })
-    .then((response) => {
-      setProduct(response.data);
-      return response.data
-    })
-    .then((results) => {
-      //then block for Jae's axios call
-      console.log(results);
-
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }, []);
+      .then((response) => {
+        setProduct(response.data);
+        return response.data
+      })
+      .then(() => {
+        return axios.get(`http://localhost:3000/ratingsnreviews/meta?product_id=${id}`, {
+          headers: {
+            'Authorization': config.API_KEY
+          }
+        }) })
+          .then((response) => {
+            setMeta(response.data);
+          })
+          .then(() => {
+        return axios.get(`http://localhost:3000/ratingsnreviews/all?product_id=${id}`, {
+          headers: {
+            'Authorization': config.API_KEY
+          }
+        }) })
+          .then((response) => {
+            setReviews(response.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      }, []);
 
   return (
     <div>
@@ -39,8 +55,14 @@ export default function App() {
         productId={productId}
         changeProductId={setProductId}
         product={product}
-        changeProduct={setProduct}
+        changeProductId={setProduct}
       />
+    <div>
+    <Ratings
+    meta={meta}
+    reviews={reviews}
+    />
+    </div>
     </div>
   )
 }

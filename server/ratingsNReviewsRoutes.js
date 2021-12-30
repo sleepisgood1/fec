@@ -2,10 +2,13 @@
 var controller = require('./controller')
 var router = require('express').Router();
 router.use((req, res, next)=>{
-  console.log('ratingsNReviews router is working');
+  console.log('ratingsnReviews router is working');
   next();
 })
+
+router.get('/meta', controller.relatedItems.getReviewMetadata)
 router.get('/all', controller.relatedItems.getAllReviews)
+
 router.get('/', )
 //fill in with correct url, function
 router.post('/addReview', controller.relatedItems.addReview)
