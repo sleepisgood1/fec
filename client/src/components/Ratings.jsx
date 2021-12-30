@@ -17,12 +17,11 @@ class Ratings extends React.Component {
   }
 
   render() {
-    console.log('reviews here: ', this.props.reviews)
-    console.log('meta here: ', this.props.meta)
-
+    //console.log('this is meta: ', this.props.meta)
     return (
       <div>
         <div> </div>
+        {/* <RatingsStats meta={this.props.meta} /> */}
         <RatingsStats samp={this.state.sampleData} />
         <RatingsFeed sampleReview={this.state.sampleReview} />
       </div>
