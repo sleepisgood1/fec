@@ -196,7 +196,7 @@ class ProductDetail extends React.Component {
     this.state = {
       styles: [],
       currStyleId: undefined,
-      currStyle: {}
+      currSku: null
     }
 
     this.pickStyle = this.pickStyle.bind(this);
@@ -211,7 +211,8 @@ class ProductDetail extends React.Component {
     })
       .then((results) => {
         this.setState({
-          styles: results.data.results
+          styles: results.data.results,
+          currStyleId: results.data.results[0].style_id
         })
         // console.log(this.state.styles)
       })
@@ -226,8 +227,12 @@ class ProductDetail extends React.Component {
     })
   }
 
-  changeSize(event) {
-    console.log(event);
+  changeSize() {
+    let selectedSku = document.getElementById("sizeSelector").value;
+    // console.log(selectedSku);
+    this.setState({
+      currSku: selectedSku
+    })
   }
 
   render() {
@@ -253,8 +258,7 @@ class ProductDetail extends React.Component {
     } else {
       index = 0
     }
-    // console.log(idx);
-    // console.log(index);
+
     let mainPrice;
     let mainSrc = this.state.styles[index].photos[0].url
     let mainStyle = this.state.styles[index].name
@@ -280,26 +284,23 @@ class ProductDetail extends React.Component {
       })
 
     const quantityArr = [];
-    for (var i = 1; i <= 15; i++) {
+    let stateSku = this.state.currSku
+    let relSku;
+    if (stateSku !== null) {
+      relSku = this.state.currSku
+      // console.log(relSku)
+    } else {
+      relSku = Object.keys(style.skus)[0]
+      // console.log(style.skus);
+      // console.log(relSku);
+    }
+    let N = Math.min(15, style.skus[relSku].quantity)
+    for (var i = 1; i <= N; i++) {
       quantityArr.push(
         <QuantitySelector
             id={i}
             key={i} />);
    }
-    // console.log(style);
-    // // console.log(style.skus);
-    // Object.keys(style.skus)
-    //   .forEach((key) => {
-    //     // console.log(style.skus);
-    //     // console.log(style.skus[key]);
-    //     quantityArr.push(
-    //       <QuantitySelector
-    //         sku={style.skus[key]}
-    //         id={key}
-    //         key={key} />
-    //     );
-    //   })
-
     return (
       <Container>
         <NavBar></NavBar>
@@ -311,12 +312,12 @@ class ProductDetail extends React.Component {
           <StylesHeader><b>STYLE > </b>{mainStyle}</StylesHeader>
           <div>{stylesArr}</div>
             <div>
-              <SizeSelect onChange={this.changeSize} name="size">
+              <SizeSelect onChange={this.changeSize} id="sizeSelector">
                 <option selected disabled>SELECT SIZE</option>
                 {
                   Object.keys(style.skus).map(key => {
                     let k = key;
-                    return (<option key={k} value={style.skus[key].size}>{style.skus[key].size}</option>)
+                    return (<option key={k} value={key}>{style.skus[key].size}</option>)
                   })
                 }
               </SizeSelect>
