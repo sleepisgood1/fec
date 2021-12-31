@@ -310,7 +310,6 @@ class ProductDetail extends React.Component {
           <Price>${mainPrice}</Price>
           <StylesHeader><b>STYLE > </b>{mainStyle}</StylesHeader>
           <div>{stylesArr}</div>
-          <form>
             <div>
               <SizeSelect onChange={this.changeSize} name="size">
                 <option selected disabled>SELECT SIZE</option>
@@ -326,9 +325,9 @@ class ProductDetail extends React.Component {
                 {quantityArr}</QuantitySelect>
             </div>
             <div>
-              <Button type="submit">Add to Bag</Button>
+              <Button>Add to Bag</Button>
             </div>
-          </form>
+
         </Selector>
         <Description2></Description2>
         <Description>
