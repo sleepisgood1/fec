@@ -3,7 +3,8 @@ const axios = require('axios');
 const config = require('../../../../server/config/config.js');
 import styled, { css } from "styled-components";
 import StyleSelector from './StyleSelector.jsx';
-import Cart from './Cart.jsx';
+import SizeSelector from './SizeSelector.jsx';
+import QuantitySelector from './QuantitySelector.jsx';
 
 const Container = styled.div`
   display: grid;
@@ -57,7 +58,7 @@ const Main = styled.main`
   border: 1px black solid;
 
 `;
-const Select = styled.div`
+const Selector = styled.div`
   background: white;
   grid-area: selector;
   padding: 0.25rem;
@@ -161,6 +162,32 @@ const StylesHeader = styled.div`
   text-align: left;
 `;
 
+const SizeSelect = styled.select`
+  background: white;
+  border: black 1px solid;
+  font-family: adobe-clean, sans-serif;
+  width: 70%;
+  height: 3rem;
+  margin: 3rem 0.25rem 0rem 0.25rem;
+`;
+
+const Button = styled.button`
+  background: white;
+  border: black 1px solid;
+  font-family: adobe-clean, sans-serif;
+  width: 70%;
+  height: 3rem;
+  margin: 3rem 0.25rem 0rem 0.25rem;
+`;
+
+const QuantitySelect = styled.select`
+  background: white;
+  border: black 1px solid;
+  font-family: adobe-clean, sans-serif;
+  width: 20%;
+  height: 3rem;
+  margin: 3rem 0.25rem 0rem 0.25rem;
+`;
 
 
 class ProductDetail extends React.Component {
@@ -173,6 +200,7 @@ class ProductDetail extends React.Component {
     }
 
     this.pickStyle = this.pickStyle.bind(this);
+    this.changeSize = this.changeSize.bind(this);
   }
 
   componentDidMount() {
@@ -185,7 +213,7 @@ class ProductDetail extends React.Component {
         this.setState({
           styles: results.data.results
         })
-        console.log(this.state.styles)
+        // console.log(this.state.styles)
       })
       .catch((err) => {
         console.log(err)
@@ -196,6 +224,10 @@ class ProductDetail extends React.Component {
     this.setState({
       currStyleId: style_id
     })
+  }
+
+  changeSize(event) {
+    console.log(event);
   }
 
   render() {
@@ -209,46 +241,95 @@ class ProductDetail extends React.Component {
       stylesArr.push(
         <StyleSelector
           style={style}
-          handleStyle = {this.pickStyle}
-          key={style.style_id}/>
+          handleStyle={this.pickStyle}
+          key={style.style_id} />
       );
     })
     //console.log(this.state.currStyleId);
-    let idx = this.state.styles.findIndex(x => x.style_id ===Number(this.state.currStyleId))
-    //console.log(idx);
-    let mainSrc;
-    let mainPrice;
-    let mainStyle;
+    let idx = this.state.styles.findIndex(x => x.style_id === Number(this.state.currStyleId))
+    let index;
     if (idx !== -1) {
-      mainSrc = this.state.styles[idx].photos[0].url
-      mainStyle = this.state.styles[idx].name
-      if (this.state.styles[idx].sale_price) {
-        mainPrice = this.state.styles[idx].sale_price + " (On Sale! Regular Price: $" + this.state.styles[idx].original_price + ")";
-      } else {
-        mainPrice = this.state.styles[idx].original_price
-      }
+      index = idx
     } else {
-      mainSrc = this.state.styles[0].photos[0].url
-      mainStyle = this.state.styles[0].name
-      if (this.state.styles[0].sale_price) {
-        mainPrice = this.state.styles[0].sale_price + " (On Sale! Regular Price: $" + this.state.styles[0].original_price +")";
-      } else {
-        mainPrice = this.state.styles[0].original_price
-      }
+      index = 0
     }
+    // console.log(idx);
+    // console.log(index);
+    let mainPrice;
+    let mainSrc = this.state.styles[index].photos[0].url
+    let mainStyle = this.state.styles[index].name
+    if (this.state.styles[index].sale_price) {
+      mainPrice = this.state.styles[index].sale_price + " (On Sale! Regular Price: $" + this.state.styles[index].original_price + ")";
+    } else {
+      mainPrice = this.state.styles[index].original_price
+    }
+
+    let style = this.state.styles[index]
+    const sizeArr = [];
+    Object.keys(style.skus)
+      .forEach((key) => {
+        //console.log(phrase);
+        // console.log(key)
+        // console.log(typeof key)
+        sizeArr.push(
+          <SizeSelector
+            sku={style.skus[key]}
+            id={key}
+            key={key} />
+        );
+      })
+
+    const quantityArr = [];
+    for (var i = 1; i <= 15; i++) {
+      quantityArr.push(
+        <QuantitySelector
+            id={i}
+            key={i} />);
+   }
+    // console.log(style);
+    // // console.log(style.skus);
+    // Object.keys(style.skus)
+    //   .forEach((key) => {
+    //     // console.log(style.skus);
+    //     // console.log(style.skus[key]);
+    //     quantityArr.push(
+    //       <QuantitySelector
+    //         sku={style.skus[key]}
+    //         id={key}
+    //         key={key} />
+    //     );
+    //   })
 
     return (
       <Container>
         <NavBar></NavBar>
-        <Main><Image src= {mainSrc} /></Main>
-        <Select>
-         <Category>{this.props.product.category}</Category>
-         <Name>{this.props.product.name}</Name>
-         <Price>${mainPrice}</Price>
-         <StylesHeader><b>STYLE > </b>{mainStyle}</StylesHeader>
+        <Main><Image src={mainSrc} /></Main>
+        <Selector>
+          <Category>{this.props.product.category}</Category>
+          <Name>{this.props.product.name}</Name>
+          <Price>${mainPrice}</Price>
+          <StylesHeader><b>STYLE > </b>{mainStyle}</StylesHeader>
           <div>{stylesArr}</div>
-          <div><Cart /></div>
-        </Select>
+          <form>
+            <div>
+              <SizeSelect onChange={this.changeSize} name="size">
+                <option selected disabled>SELECT SIZE</option>
+                {
+                  Object.keys(style.skus).map(key => {
+                    let k = key;
+                    return (<option key={k} value={style.skus[key].size}>{style.skus[key].size}</option>)
+                  })
+                }
+              </SizeSelect>
+              <QuantitySelect>
+                <option selected disabled>-</option>
+                {quantityArr}</QuantitySelect>
+            </div>
+            <div>
+              <Button type="submit">Add to Bag</Button>
+            </div>
+          </form>
+        </Selector>
         <Description2></Description2>
         <Description>
           <Slogan>{this.props.product.slogan}</Slogan>

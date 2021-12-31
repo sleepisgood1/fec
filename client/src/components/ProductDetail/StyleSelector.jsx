@@ -20,6 +20,7 @@ class StyleSelector extends React.Component {
   selectStyle(event) {
     //console.log(event.target.id);
     this.props.handleStyle(event.target.id);
+
   }
 
   render() {
