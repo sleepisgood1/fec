@@ -41,14 +41,18 @@ module.exports = {
           try{
             let reviewMetadata = models.getReviewMetadataFromApi(product_id)
             let allStyles = models.getAllStylesOfProductFromApi(product_id)
+            let productInfo = models.getProductInfoFromApi(product_id)
             let metaData = await reviewMetadata;
             let styles = await allStyles;
+            let product = await productInfo;
             // console.log('MetaData', metaData)
             // console.log('styles', styles)
             //doing await afterwords instead of doing await when I call/define the functions right away allows both fucntions to run at the same time isnead of one after the other
             let relatedProductInfo = styles.data
             relatedProductInfo.reviewMetadata = metaData.data
-            console.log('relatedprodcutsarray', relatedProductInfo)
+            // console.log(product)
+            relatedProductInfo.productInfo = product.data
+            // console.log('relatedprodcutsarray', relatedProductInfo)
             return relatedProductInfo
           }
           catch(err) {
@@ -95,7 +99,7 @@ module.exports = {
   //will need to add the rest of the controller functions...
   //posts
   addReview: function(req, res) {
-    console.log('req.body', req.body)
+    // console.log('req.body', req.body)
     models.addReviewToApi(req.body)
       .then((results)=>{
         res.json(results.data)
