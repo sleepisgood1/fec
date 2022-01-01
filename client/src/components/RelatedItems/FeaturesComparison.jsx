@@ -25,12 +25,12 @@ function FeaturesComparison (props) {
       featuresObj[oneFeature.feature].relatedValue = oneFeature.value
     }
   })
-  console.log(featuresObj)
+  // console.log(featuresObj)
   // var unique = new Set(productFeatures.concat(relatedFeatures))
   var features = Object.keys(featuresObj)
 
   var conditionalRender = (<div>
-      Features
+      Comparing
       <li>{props.product.name}</li><li></li><li>{props.curRelatedProduct.productInfo.name}</li>
       {features.map((feature)=>{
         return(

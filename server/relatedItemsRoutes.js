@@ -7,7 +7,7 @@ router.use((req, res, next)=>{
 })
 router.get('/all', controller.getAllProducts)
 router.get('/info', controller.getProductInfo)
-router.get('/styles', controller.getAllStylesOfProduct)
+router.get('/styles', controller.getAllInfoForCurrProduct)
 router.get('/related', controller.getAllRelatedProducts
 )
 
