@@ -32,6 +32,34 @@ module.exports = {
       })
       //not being used??
   },
+  getAllInfoForCurrProduct: async(req, res) =>{
+    let aggregatingData = async() => {
+      try{
+        var product_id = req.query.product_id
+        let reviewMetadata = models.getReviewMetadataFromApi(product_id)
+        let allStyles = models.getAllStylesOfProductFromApi(product_id)
+        let productInfo = models.getProductInfoFromApi(product_id)
+        let metaData = await reviewMetadata;
+        let styles = await allStyles;
+        let product = await productInfo;
+        // console.log('MetaData', metaData)
+        // console.log('styles', styles)
+        //doing await afterwords instead of doing await when I call/define the functions right away allows both fucntions to run at the same time isnead of one after the other
+        let relatedProductInfo = styles.data
+        relatedProductInfo.reviewMetadata = metaData.data
+        // console.log(product)
+        relatedProductInfo.productInfo = product.data
+        // console.log('relatedprodcutsarray', relatedProductInfo)
+        return relatedProductInfo
+      }
+      catch(err) {
+        console.log('err in aggregatingData', err)
+        return err
+      }
+      //one product info obj
+    }
+    res.json(await aggregatingData())
+  },
   getAllRelatedProducts: async(req, res) => {
     let relatedProductsInfo = await models.getAllRelatedProductsFromApi(req.query.product_id)
     let productIds = relatedProductsInfo.data

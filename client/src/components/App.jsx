@@ -8,6 +8,7 @@ import styled from "styled-components"
 import "../../dist/style.css"
 import Ratings from './Ratings.jsx'
 import RelatedItems from './RelatedItems/RelatedItems.jsx'
+import OutfitList from './OutfitList/OutfitList.jsx'
 
 export default function App() {
   const { id } = useParams();
@@ -76,9 +77,13 @@ export default function App() {
       relatedItems={relatedProductList}
       product={product}
     />
+    <OutfitList
+      product={product}
+      reviews={reviews}
+
+    />
     <Ratings
     meta={meta}
-    reviews={reviews}
     />
     </div>
     </div>
