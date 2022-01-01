@@ -18,7 +18,7 @@ function RelatedItem(props) {
     }, Number(0))
   const averageRating = numberOfRatings ? rating/numberOfRatings : ""
   const priceRender = <li><a>{relatedItemSKUs[0].original_price}</a><b>{relatedItemSKUs[0].sale_price}</b></li>
-  //technically onclick of the button, it should probably change the state of something in the top level? 
+  //technically onclick of the button, it should probably change the state of something in the top level?
   return (
     <ul>
       <img src={relatedItemSKUs[0].photos[0].thumbnail_url} onClick={()=>{
@@ -31,7 +31,7 @@ function RelatedItem(props) {
         {relatedItemSKUs[0].sale_price ? priceRender : relatedItemSKUs[0].original_price}
         <li>{averageRating}</li>
         <StarRating/>
-        <button onClick={}/>
+        {/* <button onClick={}/> */}
     </ul>
   )
 }
