@@ -1,5 +1,6 @@
 import React from 'react';
 import StarRating from './StarRating.jsx'
+import FeaturesComparison from './FeaturesComparison.jsx'
 
 function RelatedItem(props) {
   const relatedItemSKUs = props.relatedItem.results
@@ -31,6 +32,7 @@ function RelatedItem(props) {
         {relatedItemSKUs[0].sale_price ? priceRender : relatedItemSKUs[0].original_price}
         <li>{averageRating}</li>
         <StarRating/>
+        <FeaturesComparison product={props.product} curRelatedProduct={props.relatedItem}/>
         {/* <button onClick={}/> */}
     </ul>
   )

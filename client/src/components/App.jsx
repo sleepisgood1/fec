@@ -17,9 +17,7 @@ export default function App() {
   const [meta, setMeta] = useState({});
   const [reviews, setReviews] = useState({});
   const [relatedProductList, setRelatedProductList] = useState([])
-  const onRelatedProductIconClick = (curRelatedProduct) => {
-    
-  }
+
 
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
@@ -76,6 +74,7 @@ export default function App() {
     <div>
     <RelatedItems
       relatedItems={relatedProductList}
+      product={product}
     />
     <Ratings
     meta={meta}
