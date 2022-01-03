@@ -6,6 +6,7 @@ import StyleSelector from './StyleSelector.jsx';
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
 
+
 const Container = styled.div`
   display: grid;
   height: 100vh;

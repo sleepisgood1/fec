@@ -5,6 +5,7 @@
 
 // exports.relatedItems = require('./js')
 var models = require('../model');
+const outfit = []
 
 module.exports = {
   getAllProducts: function(req, res) {
@@ -32,6 +33,9 @@ module.exports = {
       })
       //not being used??
   },
+  getallOutfits: function(req, res) {
+    res.json(outfit)
+  },
   getAllInfoForCurrProduct: async(req, res) =>{
     let aggregatingData = async() => {
       try{
@@ -43,14 +47,36 @@ module.exports = {
         let styles = await allStyles;
         let product = await productInfo;
         // console.log('MetaData', metaData)
+
+        // let style = styles.data.results[0]
+        // let reviewMetadata = metaData.data
+        let outfitProduct = product.data
+        outfitProduct.style = styles.data.results[0]
+        outfitProduct.reviewMetadata = metaData.data
+        var outfitExists = false;
+        console.log(outfit)
+        for (var i=0;i<outfit.length;i++) {
+
+          if(outfit[i].id === outfitProduct.id) {
+            outfitExists = true
+          }
+        }
+        if(!outfitExists) {
+          //this is kinda hacky but works for now i guess
+          outfitProduct.newProductAdded = true
+          outfit.push(outfitProduct)
+          console.log(outfit)
+        } else {
+          outfitProduct.newProductAdded = false
+        }
         // console.log('styles', styles)
-        //doing await afterwords instead of doing await when I call/define the functions right away allows both fucntions to run at the same time isnead of one after the other
-        let relatedProductInfo = styles.data
-        relatedProductInfo.reviewMetadata = metaData.data
-        // console.log(product)
-        relatedProductInfo.productInfo = product.data
-        // console.log('relatedprodcutsarray', relatedProductInfo)
-        return relatedProductInfo
+        // //doing await afterwords instead of doing await when I call/define the functions right away allows both fucntions to run at the same time isnead of one after the other
+        // let relatedProductInfo = styles.data
+        // relatedProductInfo.reviewMetadata = metaData.data
+        // // console.log(product)
+        // relatedProductInfo.productInfo = product.data
+        console.log(outfit)
+        return outfit
       }
       catch(err) {
         console.log('err in aggregatingData', err)

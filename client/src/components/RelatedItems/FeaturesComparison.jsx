@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState, useEffect} from "react";
 import Feature from './Feature.jsx'
+import {Popup, ComparisonButton} from './../RelatedItems/RelatedItems.styled.js'
+
+
 function FeaturesComparison (props) {
   const [comparisonClicked, setComparisonClicked] = useState(false);
   // const [featuresObj, setFeaturesObj] = useState({})
@@ -29,22 +32,38 @@ function FeaturesComparison (props) {
   // var unique = new Set(productFeatures.concat(relatedFeatures))
   var features = Object.keys(featuresObj)
 
-  var conditionalRender = (<div>
-      Comparing
-      <li>{props.product.name}</li><li></li><li>{props.curRelatedProduct.productInfo.name}</li>
-      {features.map((feature)=>{
-        return(
-        <Feature
-        key={features.indexOf(feature)}
-        feature={feature}
-        featuresObj={featuresObj}
-        />
-        )
-      })}
-    </div>)
+  var conditionalRender = (
+    <Popup>
+      <table>
+        <thead>
+          <tr>
+          <th>{props.product.name}</th><th></th><th>{props.curRelatedProduct.productInfo.name}</th></tr>
+          </thead>
+          {features.map((feature)=>{
+            return(
+            <Feature
+            key={features.indexOf(feature)}
+            feature={feature}
+            featuresObj={featuresObj}
+            />
+            )
+          })}
+        <ComparisonButton onClick={()=>{
+      console.log('clicked')
+      setComparisonClicked(!comparisonClicked)
+      }}>Close Comparison
+      </ComparisonButton>
+      </table>
+    </Popup>
+    )
   return (
     <div>
-    {!comparisonClicked ? <button onClick={()=>{setComparisonClicked(true)}}/> : conditionalRender}
+    {comparisonClicked ? conditionalRender : ''}
+    <ComparisonButton onClick={()=>{
+      console.log('clicked')
+      setComparisonClicked(!comparisonClicked)
+      }}>Open Comparison
+      </ComparisonButton>
     </div>
   )
 }

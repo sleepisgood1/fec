@@ -59,6 +59,7 @@ export default function App() {
                 setRelatedProductList(response.data)
               })
           })
+          
           .catch((err) => {
             console.log(err);
           })
@@ -73,10 +74,16 @@ export default function App() {
         changeProductId={setProduct}
       />
     <div>
+    <h1>
+      Related Items
+      </h1>
     <RelatedItems
       relatedItems={relatedProductList}
       product={product}
     />
+    <h1>
+      Outfit List
+      </h1>
     <OutfitList
       product={product}
       reviews={reviews}

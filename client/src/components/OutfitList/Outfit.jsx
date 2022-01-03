@@ -1,10 +1,13 @@
 import React from 'react';
 import StarRating from './../RelatedItems/StarRating.jsx'
+import {Container} from './../RelatedItems/RelatedItems.styled.js'
+import styled, { css } from "styled-components";
+import {StyledCard, ComparisonButton} from './../RelatedItems/RelatedItems.styled.js'
 
 //product={props.product}
 // curRelatedProduct={props.curRelatedProduct}
 function Outfit (props) {
-  console.log(props.outfit)
+  // console.log(props.outfit)
   const outfit = props.outfit
 
 
@@ -24,19 +27,24 @@ function Outfit (props) {
 
 
   return (
-    <ul>
+    <StyledCard>
       <img src={outfit.style.photos[0].thumbnail_url} onClick={()=>{
         console.log('clicked!')
         // props.history.push(props.relatedItem.results)
         // console.log(props.product)
+
         }}/>
-        <li>{outfit.category}</li>
-        <li>{expandedProductName}</li>
-        {outfit.style.sale_price ? priceRender : outfit.style.original_price}
-        <li>{averageRating}</li>
+        <p>{outfit.category}</p>
+        <h5>{expandedProductName}</h5><p>
+        {outfit.style.sale_price ? priceRender : outfit.style.original_price}</p>
+        <p>{averageRating}</p>
         <StarRating/>
+        <ComparisonButton onClick={(event)=>{
+          event.preventDefault()
+          console.log(event)
+        }}>Remove From Outfit</ComparisonButton>
         {/* <button onClick={}/> */}
-    </ul>
+    </StyledCard>
   )
 }
 
