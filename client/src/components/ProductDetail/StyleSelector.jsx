@@ -8,7 +8,10 @@ const StyleCircles = styled.img`
   width: 50px;
   border: black solid 1px;
   border-radius: 50%;
-  margin: 0.25rem
+  margin: 0.25rem;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.75;
 `;
 
 class StyleSelector extends React.Component {

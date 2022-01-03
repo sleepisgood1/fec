@@ -52,12 +52,9 @@ const NavBar = styled.nav`
   padding: 0.25rem;
 `;
 const Main = styled.main`
-  background: #D3D3D3;
   color: white;
   grid-area: main;
   padding: 0.25rem;
-  border: 1px black solid;
-
 `;
 const Selector = styled.div`
   background: white;
@@ -118,15 +115,6 @@ const Image = styled.img`
   max-width: 600px;
   max-height: 500px;
 `;
-
-const StyleCircles = styled.img`
-
-  height: 50px;
-  width: 50px;
-  border: black solid 1px;
-  border-radius: 50%
-`;
-
 
 
 const QuantityPicker = styled.div`
