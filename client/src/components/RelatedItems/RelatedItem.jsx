@@ -3,22 +3,10 @@ import StarRating from './StarRating.jsx'
 import FeaturesComparison from './FeaturesComparison.jsx'
 import styled, { css } from "styled-components";
 import {Price, ProductName, Category, Sale, Stars, Details, StyledCard} from './RelatedItems.styled.js'
-
+import { Routes, Route, Redirect, useHistory} from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function RelatedItem(props) {
-//   const StyledCard = styled.div`
-//   overflow:hidden;
-//   box-shadow: 0 2px 20 px $clr-gray300;
-//   border-radius:$radius;
-//   display:flex;
-//   flex-direction:column;
-//   justify-content:space-between;
-//   cursor:pointer;
-//   transition:transform 200ms ease-in;
-// `;
-
-
-
 
   const relatedItemSKUs = props.relatedItem.results
   const reviewData = props.relatedItem.reviewMetadata
@@ -34,27 +22,36 @@ function RelatedItem(props) {
     (previousValue, currentValue) =>{
       return previousValue + Number(currentValue)
     }, Number(0))
-  const averageRating = numberOfRatings ? rating/numberOfRatings : ""
-  const priceRender = <p><s>{relatedItemSKUs[0].original_price}</s><b>{relatedItemSKUs[0].sale_price}</b></p>
+  const averageRating = numberOfRatings ? (Math.round((rating/numberOfRatings)*4)/4) : ""
+  const priceRender = <p><s>{relatedItemSKUs[0].original_price}</s><b>${relatedItemSKUs[0].sale_price}</b></p>
   // console.log(StyledCard)
   const image = relatedItemSKUs[0].photos[0].thumbnail_url ? relatedItemSKUs[0].photos[0].thumbnail_url : "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
+
+  // console.log(props.relatedItem.productInfo.id)
   //technically onclick of the button, it should probably change the state of something in the top level?
-  return (
-    <StyledCard>
-      <img src={image} onClick={()=>{
-        console.log('clicked!')
-        // props.history.push(props.relatedItem.results)
-        console.log(props.product)
-        }}/>
-        <p>{productInfo.category}</p>
-        <h5>{expandedProductName}</h5>
-        <p>
-        {relatedItemSKUs[0].sale_price ? priceRender : relatedItemSKUs[0].original_price}</p>
-        <p>{averageRating}</p>
-        <StarRating/>
-        <FeaturesComparison product={props.product} curRelatedProduct={props.relatedItem}/>
-        {/* <button onClick={}/> */}
-    </StyledCard>
-  )
+  // const history = useHistory()
+  // const redirectRoute = `/${props.relatedItem.productInfo.id}`
+  // const [redirectTo, setRedirectTo] = useState(false)
+  //   if (redirectTo) {
+  //     return <Redirect to={`/`} />
+  //   }
+    return (
+      <StyledCard>
+        <a href={`http://localhost:3000/${props.relatedItem.productInfo.id}`}>
+        <img src={image} onClick={()=>{
+          // setRedirectTo(true)
+          // history.push('../')
+          }}/>
+          </a>
+          <p>{productInfo.category}</p>
+          <h5>{expandedProductName}</h5>
+          <p>$
+          {relatedItemSKUs[0].sale_price ? priceRender : relatedItemSKUs[0].original_price}</p>
+          <p>*{averageRating ? averageRating : "No rating available"}</p>
+          <StarRating/>
+          <FeaturesComparison product={props.product} curRelatedProduct={props.relatedItem}/>
+          {/* <button onClick={}/> */}
+      </StyledCard>
+    )
 }
 export default RelatedItem;
