@@ -1,4 +1,6 @@
 TN:
+<<<<<<< HEAD
+=======
 SF:client/RelatedItemstest.js
 FNF:0
 FNH:0
@@ -1936,6 +1938,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+>>>>>>> 356b4920f39621dae56260aa3f515bb9de43940c
 SF:client/src/components/ProductDetail/ProductDetail.jsx
 FN:195,ProductDetail
 FN:207,componentDidMount
@@ -2419,6 +2422,8 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
+=======
 SF:client/src/components/RelatedItems/Feature.jsx
 FN:5,Feature
 FNF:1
@@ -2771,6 +2776,7 @@ BRF:1
 BRH:1
 end_of_record
 TN:
+>>>>>>> 356b4920f39621dae56260aa3f515bb9de43940c
 SF:server/config/config.js
 FNF:0
 FNH:0

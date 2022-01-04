@@ -59,7 +59,7 @@ export default function App() {
                 setRelatedProductList(response.data)
               })
           })
-          
+
           .catch((err) => {
             console.log(err);
           })
@@ -88,9 +88,6 @@ export default function App() {
       product={product}
       reviews={reviews}
 
-    />
-    <Ratings
-    meta={meta}
     />
     </div>
     </div>
