@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 import StyleSelector from './StyleSelector.jsx';
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
+import ImageGallery from 'react-image-gallery';
 
 
 const Container = styled.div`
@@ -250,6 +251,13 @@ class ProductDetail extends React.Component {
 
     let mainPrice;
     let mainSrc = this.state.styles[index].photos[0].url
+    let mainItems = this.state.styles[index].photos
+    let itemsArr = []
+
+    for (let i = 0; i < mainItems.length; i++) {
+      itemsArr.push({original: mainItems[i].url, thumbnail: mainItems[i].thumbnail_url})
+    }
+
     let mainStyle = this.state.styles[index].name
     if (this.state.styles[index].sale_price) {
       mainPrice = this.state.styles[index].sale_price + " (On Sale! Regular Price: $" + this.state.styles[index].original_price + ")";
@@ -290,10 +298,15 @@ class ProductDetail extends React.Component {
             id={i}
             key={i} />);
    }
+  //  src={mainSrc}
+  console.log(mainItems);
     return (
       <Container>
         <NavBar></NavBar>
-        <Main><Image src={mainSrc} /></Main>
+        <Main><ImageGallery
+        items={itemsArr}
+        thumbnailPosition = 'left'
+        showPlayButton = {false} /></Main>
         <Selector>
           <Category>{this.props.product.category}</Category>
           <Name>{this.props.product.name}</Name>
