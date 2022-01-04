@@ -298,8 +298,7 @@ class ProductDetail extends React.Component {
             id={i}
             key={i} />);
    }
-  //  src={mainSrc}
-  console.log(mainItems);
+
     return (
       <Container>
         <NavBar></NavBar>
