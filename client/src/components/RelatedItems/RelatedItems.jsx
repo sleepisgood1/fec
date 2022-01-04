@@ -1,16 +1,43 @@
 import React from 'react';
 import RelatedItem from './RelatedItem.jsx'
 import {Container} from './RelatedItems.styled.js'
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import {ComparisonButton} from './../RelatedItems/RelatedItems.styled.js'
 
 function RelatedItems(props) {
   const [currIndex, setCurrIndex] = useState(0)
   var allRelated = props.relatedItems.concat(props.relatedItems)
   var listOfFour = allRelated.slice(currIndex%4, (currIndex%4)+4)
-  //gonna get an array of items
+
+
+    const elRef = useRef();
+    useEffect(() => {
+      const el = elRef.current;
+      if (el) {
+        const onWheel = e => {
+          console.log(e.deltaY)
+          if (e.deltaY<0) {
+            setCurrIndex(currIndex - Math.ceil(e.deltaY/30))
+          } else if (e.deltaY>0) {
+            setCurrIndex(currIndex + Math.ceil(e.deltaY/30))
+          }
+          // console.log(currIndex)
+          // console.log(el.scrollLeft)
+          if (e.deltaY == 0) return;
+          e.preventDefault();
+          // el.scrollTo({
+          //   left: el.scrollLeft + e.deltaY,
+          //   behavior: "smooth"
+          // });
+        };
+        el.addEventListener("wheel", onWheel);
+        return () => el.removeEventListener("wheel", onWheel);
+      }
+    }, []);
+
   return (
-    <Container>
+    <Container
+    ref={elRef} style={{overflow: "auto" }}>
       <ComparisonButton onClick={(event)=>{
         event.preventDefault()
         if (currIndex===0) {
