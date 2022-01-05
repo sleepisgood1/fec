@@ -1,1 +1,5 @@
 @import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
+
+.image-gallery-slide img {
+  height: 500px;
+}
