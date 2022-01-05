@@ -168,6 +168,10 @@ const Button = styled.button`
   width: 70%;
   height: 3rem;
   margin: 3rem 0.25rem 0rem 0.25rem;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.75;
+  }
 `;
 
 const QuantitySelect = styled.select`
@@ -191,6 +195,7 @@ class ProductDetail extends React.Component {
 
     this.pickStyle = this.pickStyle.bind(this);
     this.changeSize = this.changeSize.bind(this);
+    this.postToCart = this.postToCart.bind(this);
   }
 
   componentDidMount() {
@@ -222,6 +227,23 @@ class ProductDetail extends React.Component {
     // console.log(selectedSku);
     this.setState({
       currSku: selectedSku
+    })
+  }
+
+  postToCart() {
+    let selectedSku = document.getElementById("sizeSelector").value;
+    let selectedQuantity = document.getElementById("quantitySelector").value;
+    // console.log(selectedSku)
+    // console.log(selectedQuantity);
+    let bodyParams = {
+      "sku_id": Number(selectedSku),
+      "count": Number(selectedQuantity)
+    }
+    // console.log(bodyParams);
+    return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/cart`, bodyParams, {
+      headers: {
+        'Authorization': config.API_KEY
+      }
     })
   }
 
@@ -305,7 +327,8 @@ class ProductDetail extends React.Component {
         <Main><ImageGallery
         items={itemsArr}
         thumbnailPosition = 'left'
-        showPlayButton = {false} /></Main>
+        showPlayButton = {false}
+        showFullscreenButton = {false} /></Main>
         <Selector>
           <Category>{this.props.product.category}</Category>
           <Name>{this.props.product.name}</Name>
@@ -322,12 +345,12 @@ class ProductDetail extends React.Component {
                   })
                 }
               </SizeSelect>
-              <QuantitySelect>
+              <QuantitySelect id="quantitySelector" >
                 <option selected disabled>-</option>
                 {quantityArr}</QuantitySelect>
             </div>
             <div>
-              <Button>Add to Bag</Button>
+              <Button onClick = {this.postToCart}>Add to Bag</Button>
             </div>
 
         </Selector>

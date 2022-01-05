@@ -10,7 +10,7 @@ class SizeSelector extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    //console.log(this.props);
     return (
       <option id={Number(this.props.id)} name={Number(this.props.id)} value={this.props.sku.size}>{this.props.sku.size}</option>
     );

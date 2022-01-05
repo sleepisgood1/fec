@@ -55,7 +55,7 @@ export default function App() {
               }
             })
               .then((response)=>{
-                console.log(response.data)
+                // console.log(response.data)
                 setRelatedProductList(response.data)
               })
           })
