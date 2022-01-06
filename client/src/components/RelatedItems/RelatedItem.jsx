@@ -35,7 +35,8 @@ function RelatedItem(props) {
   //   if (redirectTo) {
   //     return <Redirect to={`/`} />
   //   }
-  var host = "http://54.183.148.200"
+  // var host = "http://54.183.148.200"
+  var host = "http://localhost:3000"
     return (
       <StyledCard>
         <a href={`${host}/${props.relatedItem.productInfo.id}`}>
