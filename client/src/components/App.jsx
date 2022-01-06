@@ -50,7 +50,7 @@ export default function App() {
             setReviews(response.data);
           })
           .then(()=>{
-            return axios.get(`${host}///localhost:3000/relateditems/related`, {
+            return axios.get(`${host}/relateditems/related`, {
               params: {
                 product_id: id
               }
