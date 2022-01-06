@@ -18,7 +18,8 @@ export default function App() {
   const [meta, setMeta] = useState({});
   const [reviews, setReviews] = useState({});
   const [relatedProductList, setRelatedProductList] = useState([])
-
+  var host = "http://54.183.148.200"
+  // var host = "http://localhost:3000"
 
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
@@ -31,7 +32,7 @@ export default function App() {
         return response.data
       })
       .then(() => {
-        return axios.get(`http://localhost:3000/ratingsnreviews/meta?product_id=${id}`, {
+        return axios.get(`${host}/ratingsnreviews/meta?product_id=${id}`, {
           headers: {
             'Authorization': config.API_KEY
           }
@@ -40,7 +41,7 @@ export default function App() {
             setMeta(response.data);
           })
           .then(() => {
-        return axios.get(`http://localhost:3000/ratingsnreviews/all?product_id=${id}`, {
+        return axios.get(`${host}/ratingsnreviews/all?product_id=${id}`, {
           headers: {
             'Authorization': config.API_KEY
           }
@@ -49,7 +50,7 @@ export default function App() {
             setReviews(response.data);
           })
           .then(()=>{
-            return axios.get(`http://localhost:3000/relateditems/related`, {
+            return axios.get(`${host}///localhost:3000/relateditems/related`, {
               params: {
                 product_id: id
               }

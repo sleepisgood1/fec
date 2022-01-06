@@ -35,9 +35,10 @@ function RelatedItem(props) {
   //   if (redirectTo) {
   //     return <Redirect to={`/`} />
   //   }
+  var host = "http://54.183.148.200"
     return (
       <StyledCard>
-        <a href={`http://localhost:3000/${props.relatedItem.productInfo.id}`}>
+        <a href={`${host}/${props.relatedItem.productInfo.id}`}>
         <img src={image} onClick={()=>{
           // setRedirectTo(true)
           // history.push('../')
