@@ -19,16 +19,16 @@ export default function App() {
   const [meta, setMeta] = useState({});
   const [reviews, setReviews] = useState({});
   const [relatedProductList, setRelatedProductList] = useState([])
-  // var host = "http://54.183.148.200"
-  const env = process.env.NODE_ENV? process.env.NODE_ENV : "development"
-  if (env === 'development') {
-    var host = "http://localhost:3000"
-  }
-  if (env === 'production') {
-    var host = "http://54.183.148.200"
-  }
-  console.log(env)
-  console.log(host)
+  // // var host = "http://54.183.148.200"
+  // const env = process.env.NODE_ENV? process.env.NODE_ENV : "development"
+  // if (env === 'development') {
+  //   var host = "http://localhost:3000"
+  // }
+  // if (env === 'production') {
+  //   var host = "http://54.183.148.200"
+  // }
+  // console.log(process.env)
+  // console.log(process.env.NODE_ENV)
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
       headers: {
@@ -40,7 +40,7 @@ export default function App() {
         return response.data
       })
       .then(() => {
-        return axios.get(`${host}/ratingsnreviews/meta?product_id=${id}`, {
+        return axios.get(`/ratingsnreviews/meta?product_id=${id}`, {
           headers: {
             'Authorization': config.API_KEY
           }
@@ -49,7 +49,7 @@ export default function App() {
             setMeta(response.data);
           })
           .then(() => {
-        return axios.get(`${host}/ratingsnreviews/all?product_id=${id}`, {
+        return axios.get(`/ratingsnreviews/all?product_id=${id}`, {
           headers: {
             'Authorization': config.API_KEY
           }
@@ -58,7 +58,7 @@ export default function App() {
             setReviews(response.data);
           })
           .then(()=>{
-            return axios.get(`${host}/relateditems/related`, {
+            return axios.get(`/relateditems/related`, {
               params: {
                 product_id: id
               }
