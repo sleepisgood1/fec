@@ -35,8 +35,13 @@ function RelatedItem(props) {
   //   if (redirectTo) {
   //     return <Redirect to={`/`} />
   //   }
-  // var host = "http://54.183.148.200"
-  var host = "http://localhost:3000"
+  const env = process.env.NODE_ENV? process.env.NODE_ENV : "development"
+  if (env === 'development') {
+    var host = "http://localhost:3000"
+  }
+  if (env === 'production') {
+    var host = "http://54.183.148.200"
+  }
     return (
       <StyledCard>
         <a href={`${host}/${props.relatedItem.productInfo.id}`}>

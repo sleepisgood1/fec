@@ -9,6 +9,7 @@ import "../../dist/style.css"
 import Ratings from './Ratings.jsx'
 import RelatedItems from './RelatedItems/RelatedItems.jsx'
 import OutfitList from './OutfitList/OutfitList.jsx'
+// require('dotenv').config()
 
 export default function App() {
   const { id } = useParams();
@@ -19,8 +20,15 @@ export default function App() {
   const [reviews, setReviews] = useState({});
   const [relatedProductList, setRelatedProductList] = useState([])
   // var host = "http://54.183.148.200"
-  var host = "http://localhost:3000"
-
+  const env = process.env.NODE_ENV? process.env.NODE_ENV : "development"
+  if (env === 'development') {
+    var host = "http://localhost:3000"
+  }
+  if (env === 'production') {
+    var host = "http://54.183.148.200"
+  }
+  console.log(env)
+  console.log(host)
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
       headers: {

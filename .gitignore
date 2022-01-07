@@ -1,5 +1,6 @@
 bundle.js
 bundle.js.map
+.env
 
 ## API keys ##
 server/config/config.js
@@ -7,3 +8,4 @@ compiled/config/config.js
 
 # Dependency directories
 node_modules/
+
