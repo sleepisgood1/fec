@@ -1,9 +1,9 @@
 //if were using db... put functiosn to talk to db here
 //import db functions/connections here -> to query here
 const axios = require('axios');
-const config = require('../config/config.js')
-
-
+// const config = require('../config/config.js')
+require('dotenv').config()
+const config = process.env
 
 //currently product Details and relatedItems are the same
 module.exports = {

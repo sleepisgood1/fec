@@ -27,7 +27,8 @@ export default function App() {
   if (env === 'production') {
     var host = "http://54.183.148.200"
   }
-
+  console.log(env)
+  console.log(host)
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`, {
       headers: {
