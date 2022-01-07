@@ -6,10 +6,6 @@ import {Popup, ComparisonButton} from './../RelatedItems/RelatedItems.styled.js'
 
 function FeaturesComparison (props) {
   const [comparisonClicked, setComparisonClicked] = useState(false);
-  // const [featuresObj, setFeaturesObj] = useState({})
-  // useEffect(()=>{
-
-  // }, )
   const featuresObj = {}
 
   var productFeatures = props.product.features.map((oneFeature)=>{
@@ -28,8 +24,7 @@ function FeaturesComparison (props) {
       featuresObj[oneFeature.feature].relatedValue = oneFeature.value
     }
   })
-  // console.log(featuresObj)
-  // var unique = new Set(productFeatures.concat(relatedFeatures))
+
   var features = Object.keys(featuresObj)
 
   var conditionalRender = (
