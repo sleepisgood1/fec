@@ -39,7 +39,7 @@ module.exports = {
   },
   plugins: [
     new Dotenv()
-  ]
+  ],
   // plugins: [
   //   new webpack.DefinePlugin( {
   //     "process.env": Dotenv.parsed

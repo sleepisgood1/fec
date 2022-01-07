@@ -6,15 +6,8 @@ const axios = require('axios');
 
 function OutfitList(props) {
   const [myOutfit, setMyOutfit] = useState([]);
-  const env = process.env.NODE_ENV? process.env.NODE_ENV : "development"
-  if (env === 'development') {
-    var host = "http://localhost:3000"
-  }
-  if (env === 'production') {
-    var host = "http://54.183.148.200"
-  }
   useEffect(()=>{
-    axios.get(`${host}relateditems/outfits`, {
+    axios.get(`/relateditems/outfits`, {
     })
       .then((response)=>{
         setMyOutfit(response.data)
@@ -22,22 +15,14 @@ function OutfitList(props) {
   }, [])
 
   const onAddToOutfitClick = (product) => {
-    // console.log('clicked')
-    //currently I'm just amkign another axios call but we could technically just have the productinfo data from productdetail's state raised to App.js and then either just both use them as props or make it into a react context.
 
-    axios.get(`${host}/relateditems/styles`, {
+    axios.get(`/relateditems/styles`, {
       params: {
         product_id: product.id
       }
     })
       .then((response)=>{
-        // console.log('response.data', response.data)
-        // console.log('props.product', props.product)
-        // var styles = response.data.results[0]
-        // var reviewMetadata = response.data.reviewMetadata
-        // var outfitProduct = props.product
-        // outfitProduct.style = response.data.results[0]
-        // outfitProduct.reviewMetadata = reviewMetadata
+
         let length = response.data.length
         if (response.data[length-1].newProductAdded) {
           var newOutfit = myOutfit.concat(response.data)

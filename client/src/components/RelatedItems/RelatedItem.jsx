@@ -44,10 +44,9 @@ function RelatedItem(props) {
   }
     return (
       <StyledCard>
-        <a href={`${host}/${props.relatedItem.productInfo.id}`}>
+        <a href={`/${props.relatedItem.productInfo.id}`}>
         <img src={image} onClick={()=>{
-          // setRedirectTo(true)
-          // history.push('../')
+
           }}/>
           </a>
           <p>{productInfo.category}</p>

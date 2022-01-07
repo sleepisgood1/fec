@@ -21,6 +21,7 @@ console.log(mainDir);
 // var host = "http://localhost"
 app.listen(port, ()=>{
   console.log (`server is listening at ${host}${port}`)
+  console.log(env.NODE_ENV)
 });
 app.use(express.json());
 
