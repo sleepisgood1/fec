@@ -1,7 +1,8 @@
 var path = require('path');
+// const webpack = require('webpack');
 var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, '/client/dist');
-
+const Dotenv = require('dotenv-webpack');
 module.exports = {
   entry: `${SRC_DIR}/index.js`,
   mode: 'development',
@@ -35,6 +36,14 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new Dotenv()
+  ]
+  // plugins: [
+  //   new webpack.DefinePlugin( {
+  //     "process.env": Dotenv.parsed
+  //   } ),
+  // ]
 
 };

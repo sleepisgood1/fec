@@ -16,7 +16,7 @@ var app = express();
 const port = 3000;
 const mainDir = __dirname.substring(0, __dirname.length - 6);
 console.log(mainDir);
-var host = "http://localhost" 
+// var host = "http://localhost"
 app.listen(port, ()=>{
   console.log (`server is listening at http://localhost:${port}`)
 });
