@@ -30,8 +30,7 @@ function Outfit (props) {
     <StyledCard>
       <img src={outfit.style.photos[0].thumbnail_url} onClick={()=>{
         console.log('clicked!')
-        // props.history.push(props.relatedItem.results)
-        // console.log(props.product)
+
 
         }}/>
         <p>{outfit.category}</p>
@@ -43,7 +42,7 @@ function Outfit (props) {
           event.preventDefault()
           console.log(event)
         }}>Remove From Outfit</ComparisonButton>
-        {/* <button onClick={}/> */}
+
     </StyledCard>
   )
 }

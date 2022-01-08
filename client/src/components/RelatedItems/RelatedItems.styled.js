@@ -11,6 +11,9 @@ export const StyledCard = styled.div`
   transition:transform 200ms ease-in;
   width: 300px;
   border-radius:2rem;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
 
   img {
     height:20rem;
