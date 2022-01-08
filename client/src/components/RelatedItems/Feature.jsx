@@ -1,7 +1,6 @@
 import React from 'react';
 import {ComparisonContainerCardBody, ComparisonFeatures, checks} from './../RelatedItems/RelatedItems.styled.js'
-//product={props.product}
-// curRelatedProduct={props.curRelatedProduct}
+
 function Feature (props) {
   return (
     <tbody>

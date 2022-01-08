@@ -1,6 +1,7 @@
 bundle.js
 bundle.js.map
 .env
+ignore
 
 ## API keys ##
 server/config/config.js

@@ -1,11 +1,14 @@
 var path = require('path');
-// const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, '/client/dist');
 const Dotenv = require('dotenv-webpack');
 module.exports = {
   entry: `${SRC_DIR}/index.js`,
-  mode: 'development',
+  mode: 'production',
+  optimization: {
+    minimizer: [new TerserPlugin({ /* additional options here */ })],
+  },
   devtool: 'source-map',
   watch: true,
   output: {

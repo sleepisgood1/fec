@@ -9,8 +9,11 @@ export const StyledCard = styled.div`
   justify-content:space-between;
   cursor:pointer;
   transition:transform 200ms ease-in;
-  width: 300px;
+  width: 200px;
   border-radius:2rem;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
 
   img {
     height:20rem;
