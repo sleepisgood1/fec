@@ -6,7 +6,6 @@ const axios = require('axios');
 const config = require('../../../server/config/config.js');
 import styled from "styled-components"
 import "../../dist/style.css"
-import Ratings from './Ratings.jsx'
 import RelatedItems from './RelatedItems/RelatedItems.jsx'
 import OutfitList from './OutfitList/OutfitList.jsx'
 // require('dotenv').config()
@@ -39,24 +38,6 @@ export default function App() {
         setProduct(response.data);
         return response.data
       })
-      .then(() => {
-        return axios.get(`/ratingsnreviews/meta?product_id=${id}`, {
-          headers: {
-            'Authorization': config.API_KEY
-          }
-        }) })
-          .then((response) => {
-            setMeta(response.data);
-          })
-          .then(() => {
-        return axios.get(`/ratingsnreviews/all?product_id=${id}`, {
-          headers: {
-            'Authorization': config.API_KEY
-          }
-        }) })
-          .then((response) => {
-            setReviews(response.data);
-          })
           .then(()=>{
             return axios.get(`/relateditems/related`, {
               params: {
@@ -64,7 +45,7 @@ export default function App() {
               }
             })
               .then((response)=>{
-                // console.log(response.data)
+
                 setRelatedProductList(response.data)
               })
           })

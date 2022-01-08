@@ -55,6 +55,7 @@ function FeaturesComparison (props) {
     <div>
     {comparisonClicked ? conditionalRender : ''}
     <ComparisonButton onClick={()=>{
+      
       console.log('clicked')
       setComparisonClicked(!comparisonClicked)
       }}>Open Comparison

@@ -21,16 +21,12 @@ function RelatedItems(props) {
           } else if (e.deltaY>0) {
             setCurrIndex(currIndex + Math.ceil(e.deltaY/30))
           }
-          // console.log(currIndex)
-          // console.log(el.scrollLeft)
+
           if (e.deltaY == 0) return;
-          e.preventDefault();
-          // el.scrollTo({
-          //   left: el.scrollLeft + e.deltaY,
-          //   behavior: "smooth"
-          // });
+          // e.preventDefault();
+
         };
-        el.addEventListener("wheel", onWheel);
+        el.addEventListener("wheel", onWheel, {passive: true});
         return () => el.removeEventListener("wheel", onWheel);
       }
     }, []);
