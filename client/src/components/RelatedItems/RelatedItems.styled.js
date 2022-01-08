@@ -9,7 +9,7 @@ export const StyledCard = styled.div`
   justify-content:space-between;
   cursor:pointer;
   transition:transform 200ms ease-in;
-  width: 200px;
+  width: 300px;
   border-radius:2rem;
   position: relative;
   padding-bottom: 56.25%;
