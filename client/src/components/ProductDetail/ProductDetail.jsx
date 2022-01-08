@@ -277,7 +277,7 @@ class ProductDetail extends React.Component {
     let itemsArr = []
 
     for (let i = 0; i < mainItems.length; i++) {
-      itemsArr.push({original: mainItems[i].url, thumbnail: mainItems[i].thumbnail_url})
+      itemsArr.push({original: mainItems[i].thumbnail_url, thumbnail: mainItems[i].thumbnail_url})
     }
 
     let mainStyle = this.state.styles[index].name

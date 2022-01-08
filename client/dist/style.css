@@ -1,5 +1,21 @@
 @import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
+.image-gallery {
+  width: auto;
+  height: 500px;
+}
 
 .image-gallery-slide img {
   height: 500px;
 }
+
+.image-gallery-image img {
+  height: 10px;
+  width: 10px;
+}
+
+.image-gallery-thumbnail-image img {
+  height: 10px;
+  width: 10px;
+}
+
+
