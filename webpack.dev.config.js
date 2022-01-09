@@ -3,6 +3,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, '/client/dist');
 const Dotenv = require('dotenv-webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
+
 module.exports = {
   entry: `${SRC_DIR}/index.js`,
   mode: 'production',
@@ -41,7 +43,13 @@ module.exports = {
     ]
   },
   plugins: [
-    new Dotenv()
+    new Dotenv(),
+    new CompressionPlugin({
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
   ],
   // plugins: [
   //   new webpack.DefinePlugin( {

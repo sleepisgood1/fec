@@ -9,6 +9,8 @@ var qnaRoutes = require('./qNARoutes.js');
 var ratingsNReviewsRoutes = require('./ratingsNReviewsRoutes.js');
 var relatedItemsRoutes = require('./relatedItemsRoutes.js');
 const cors = require('cors');
+var gzipStatic = require('connect-gzip-static');
+
 require('dotenv').config()
 const env = process.env
 
@@ -33,7 +35,7 @@ app.use('/relateditems', relatedItemsRoutes)
 //use parameters to then route each to the appropriate functions
 //could change this route to be more specific
 
-app.use(express.static(path.join(mainDir, 'client', 'dist')));
+app.use(gzipStatic(path.join(mainDir, 'client', 'dist')));
 app.use(cors());
 
 
